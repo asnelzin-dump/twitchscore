@@ -20,7 +20,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     name = models.CharField(max_length=255)
 
-    summoner_name = models.CharField(max_length=255, unique=True)
+    summoner_name = models.CharField(max_length=255)
     summoner_id = models.IntegerField(blank=True)
     region = models.CharField(max_length=3, choices=REGION_CHOICES)
 

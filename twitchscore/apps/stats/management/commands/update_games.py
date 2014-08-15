@@ -26,10 +26,11 @@ class Command(BaseCommand):
 
                 user_games = Game.objects.filter(user=user)
                 last_saved_games_ids = user_games.order_by('-create_date')[:10].values_list('game_id', flat=True)
-                games = filter(lambda obj: obj.game_id not in last_saved_games_ids, self.games)
-                print('\tFor user: {name} added {counter} games.'.format(name=user.summoner_name,
-                                                                         counter=len(list(games))))
+                games = list(filter(lambda obj: obj.game_id not in last_saved_games_ids, self.games))
+
                 Game.objects.bulk_create(games)
+                print('\tFor user: {name} added {counter} games.'.format(name=user.summoner_name,
+                                                                         counter=len(games)))
                 self.games = []
 
     def create_game(self, game_data, user):
