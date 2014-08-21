@@ -3,4 +3,9 @@
 
 db.sqlite3
 
+twitchscore/settings/local.py
+
+logs/*
+files/media/*
+
 !.gitignore

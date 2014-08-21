@@ -1,8 +1,11 @@
 import json
+import logging
 import re
-import urllib.request
-import urllib.parse
-from twitchscore import settings
+import urllib
+from twitchscore.settings.base import RIOT_API_KEY
+
+
+logger = logging.getLogger(__name__)
 
 
 def camelcase_to_underscore(name):
@@ -30,7 +33,7 @@ class RiotAPI(object):
         command = 'summoner/by-name/{summoner_name}'
         parameters = {
             'region': self.user.region.lower(),
-            'summoner_name': urllib.parse.quote(self.user.summoner_name),
+            'summoner_name': urllib.quote(self.user.summoner_name),
         }
         data = self._execute_command(command, version, parameters)
         if data is not None:
@@ -54,10 +57,10 @@ class RiotAPI(object):
         url = self.URL_TEMPLATE.format(region=parameters['region'],
                                        version=version,
                                        command=command.format(**parameters),
-                                       api_key=settings.RIOT_API_KEY)
-        print(url)
-        response = urllib.request.urlopen(url)
-        if response.status == 200:
+                                       api_key=RIOT_API_KEY)
+        logger.info(url)
+        response = urllib.urlopen(url)
+        if response.getcode() == 200:
             raw_data = response.read().decode('utf8')
             return fix_keys(json.loads(raw_data))
         return None
