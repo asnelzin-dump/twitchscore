@@ -5,7 +5,8 @@ db.sqlite3
 
 twitchscore/settings/local.py
 
-logs/*
+logs/*.log
 files/media/*
+!files/media/empty
 
 !.gitignore
