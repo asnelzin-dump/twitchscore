@@ -16,6 +16,7 @@ source /home/asnelzin/.virtualenvs/twitchscore/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
-exec /home/asnelzin/.virtualenvs/twitchscore/bin/gunicorn_django -w $NUM_WORKERS \
+exec /home/asnelzin/.virtualenvs/twitchscore/bin/python /home/asnelzin/twitchscore/manage.py \
+  run_gunicorn --workers=$NUM_WORKERS \
   --user=$USER --group=$GROUP --log-level=debug --pid=$PIDFILE \
-  --log-file=$LOGFILE -b localhost:8001
+  --log-file=$LOGFILE --bind=localhost:8001
