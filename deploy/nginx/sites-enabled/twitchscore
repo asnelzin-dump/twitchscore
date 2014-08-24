@@ -31,3 +31,4 @@ server {
     }
     # what to serve if upstream is not available or crashes
     error_page 500 502 503 504 /static/html/500.html;
+}
