@@ -3,9 +3,9 @@
 
 db.sqlite3
 
-twitchscore/settings/local.py
 
 logs/*.log
+pids/*.pid
 files/media/*
 !files/media/empty
 

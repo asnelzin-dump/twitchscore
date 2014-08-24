@@ -1,5 +1,16 @@
+import os
 from os.path import join, abspath, dirname
 
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_variable(var_name):
+    """ Get the environment variable or return exception """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
 
 #PATH CONFIGURATION
 here = lambda *x: join(abspath(dirname(__file__)), *x)
@@ -107,6 +118,9 @@ LOGGING = {
 #URL
 ROOT_URLCONF = 'twitchscore.urls'
 
+#KEY
+SECRET_KEY = get_env_variable('SECRET_KEY')
+
 #CELERY
 import djcelery
 djcelery.setup_loader()
@@ -126,4 +140,4 @@ CELERYBEAT_SCHEDULE = {
 
 #OTHER
 WSGI_APPLICATION = 'twitchscore.wsgi.application'
-RIOT_API_KEY = 'f3ec283e-4b7d-49d9-ac16-cb8322a97471'
+RIOT_API_KEY = get_env_variable('RIOT_API_KEY')

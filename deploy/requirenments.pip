@@ -2,7 +2,14 @@ Django==1.6.5
 South==1.0
 amqp==1.4.6
 anyjson==0.3.3
+backports.ssl-match-hostname==3.4.0.2
 billiard==3.3.0.18
 celery==3.1.13
+celerymon==1.0.3
+certifi==14.05.14
+django-celery==3.1.10
 kombu==3.0.21
+psycopg2==2.5.3
 pytz==2014.4
+tornado==4.0.1
+wsgiref==0.1.2

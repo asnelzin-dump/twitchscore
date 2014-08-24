@@ -1,27 +1,27 @@
-# settings/production.py
+# settings/local.py
 from .base import *
 
 #DEBUG
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-SESSION_SAVE_EVERY_REQUEST = False
+SESSION_SAVE_EVERY_REQUEST = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 #DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'localhost',
         'NAME': 'db',
         'USER': 'postgres',
-        'PASSWORD': get_env_variable('POSTGRES_PASSWORD'),
+        'PASSWORD': 'podushka',
     }
 }
 
 #STATIC
-STATIC_ROOT = root('static')
-
 STATICFILES_DIRS = (
-    root('files/media'),
+    root('twitchscore/static'),
 )
+
+#TEMPLATE
+TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.debug',)
