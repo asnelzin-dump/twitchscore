@@ -115,6 +115,10 @@ LOGGING = {
         'twitchscore': {
             'handlers': ['logfile'],
             'level': 'DEBUG',
+        },
+        'tasks': {
+            'handlers': ['logfile'],
+            'level': 'DEBUG',
         }
     }
 }

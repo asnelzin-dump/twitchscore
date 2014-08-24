@@ -9,4 +9,4 @@ source /home/asnelzin/.virtualenvs/twitchscore/bin/postactivate
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 exec /home/asnelzin/.virtualenvs/twitchscore/bin/python \
-    /home/asnelzin/twitchscore/manage.py celerybeat
+    /home/asnelzin/twitchscore/manage.py celeryd --beat
