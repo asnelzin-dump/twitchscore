@@ -15,7 +15,7 @@ server {
     access_log  /home/asnelzin/twitchscore/logs/twitchscore.access.log;
     keepalive_timeout 5;
 
-    root /home/asnelzin/twitchscore/twitchscore/static;
+    root /home/asnelzin/twitchscore/files/static;
 
     location / {
         proxy_pass http://asnelzin.ru;
