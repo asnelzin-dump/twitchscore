@@ -1,3 +1,7 @@
+http {
+    server_names_hash_bucket_size  64;
+}
+
 upstream asnelzin.ru {
     server localhost:8001 fail_timeout=0;
 }
