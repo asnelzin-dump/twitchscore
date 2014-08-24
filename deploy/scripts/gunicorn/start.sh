@@ -13,7 +13,6 @@ GROUP=asnelzin
 echo "Starting $NAME as `whoami`"
 
 source /home/asnelzin/.virtualenvs/twitchscore/bin/postactivate
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 exec /home/asnelzin/.virtualenvs/twitchscore/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
