@@ -1,38 +1,51 @@
-upstream asnelzin.ru {
-    server localhost:8001 fail_timeout=0;
+worker_processes 1;
+
+events {
+    worker_connections 1024;
 }
 
-server {
-    listen 80;
-    server_name  www.asnelzin.ru;
-    rewrite ^/(.*) http://asnelzin.ru/$1 permanent;
-}
+http {
 
-server {
-    listen 80;
-    client_max_body_size 4G;
-    server_name asnelzin.ru;
-    access_log  /home/asnelzin/twitchscore/logs/twitchscore.access.log;
-    keepalive_timeout 5;
+    sendfile on;
 
-    root /home/asnelzin/twitchscore/files/static;
+    gzip              on;
+    gzip_http_version 1.0;
+    gzip_proxied      any;
+    gzip_min_length   500;
+    gzip_disable      "MSIE [1-6]\.";
+    gzip_types        text/plain text/xml text/css
+                      text/comma-separated-values
+                      text/javascript
+                      application/x-javascript
+                      application/atom+xml;
 
-    location / {
-        proxy_pass http://asnelzin.ru;
+    upstream asnelzin.ru {
+        localhost:8001
     }
 
-    error_page 500 502 503 504 /500.html;
-    location = /500.html {
-        root /home/asnelzin/twitchscore/twitchscore/static/html;
-    }
+    # Configuration for Nginx
+    server {
+        listen 80;
 
-    location ~ ^/(static|media)/ {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
-        if (!-f $request_filename) {
-            proxy_pass http://asnelzin.ru;
-            break;
+        location ^~ /static/  {
+            root /home/asnelzin/twitchscore/files/static/;
+        }
+
+        location = /favicon.ico  {
+            root /home/asnelzin/twitchscore/files/favicon.ico;
+        }
+
+        # Proxy connections to the application servers
+        # app_servers
+        location / {
+
+            proxy_pass         http://asnelzin.ru;
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+
         }
     }
 }
