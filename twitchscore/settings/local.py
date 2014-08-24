@@ -18,10 +18,5 @@ DATABASES = {
     }
 }
 
-#STATIC
-STATICFILES_DIRS = (
-    root('twitchscore/static'),
-)
-
 #TEMPLATE
 TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.debug',)

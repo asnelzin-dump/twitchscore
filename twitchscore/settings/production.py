@@ -20,8 +20,4 @@ DATABASES = {
 }
 
 #STATIC
-STATIC_ROOT = root('static')
-
-STATICFILES_DIRS = (
-    root('files/media'),
-)
+STATIC_ROOT = root('files/static')

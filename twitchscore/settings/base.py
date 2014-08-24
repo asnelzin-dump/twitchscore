@@ -35,12 +35,16 @@ USE_I18N = False
 USE_L10N = True
 
 #MEDIA
-MEDIA_ROOT = root('media')
+MEDIA_ROOT = root('files/media')
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 #STATIC FILES
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    root('twitchscore/static'),
+)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
