@@ -118,7 +118,7 @@ LOGGING = {
         },
         'tasks': {
             'handlers': ['logfile'],
-            'level': 'DEBUG',
+            'level': 'DEBUG'
         }
     }
 }
@@ -142,7 +142,7 @@ from celery.schedules import crontab
 CELERYBEAT_SCHEDULE = {
     'update_games': {
         'task': 'twitchscore.apps.stats.tasks.update_games',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute=0, hour='*/2'),
     }
 }
 
