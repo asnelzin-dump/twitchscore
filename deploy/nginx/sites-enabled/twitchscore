@@ -8,9 +8,9 @@ server {
 server {
     listen   80;
     server_name asnelzin.ru;
-    # no security problem here, since / is alway passed to upstream
-    root /home/asnelzin/twitchscore/;
-    # serve directly - analogous for static/staticfiles
+    client_max_body_size 4G;
+    access_log  /home/asnelzin/twitchscore/logs/twitchscore.access.log;
+    keepalive_timeout 5;
 
     location /static/ {
         autoindex on;
