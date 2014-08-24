@@ -9,7 +9,7 @@ server {
     listen   80;
     server_name asnelzin.ru;
     client_max_body_size 4G;
-    access_log  /home/asnelzin/twitchscore/logs/twitchscore.access.log;
+    access_log  /home/asnelzin/twitchscore/logs/access.log;
     keepalive_timeout 5;
 
     location /static/ {
