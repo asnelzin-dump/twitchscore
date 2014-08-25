@@ -135,7 +135,7 @@ import djcelery
 djcelery.setup_loader()
 
 BROKER_URL = 'django://'
-BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
+BROKER_BACKEND = "kombu.transport.DatabaseTransport"
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 CELERY_TIMEZONE = TIME_ZONE
 
