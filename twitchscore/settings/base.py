@@ -87,7 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
-    'djkombu'
+    'djkombu',
     'djcelery',
 
     'twitchscore.apps.accounts',
