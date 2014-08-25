@@ -87,7 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
-    'kombu.transport.django',
+    'djkombu'
     'djcelery',
 
     'twitchscore.apps.accounts',
@@ -135,7 +135,7 @@ import djcelery
 djcelery.setup_loader()
 
 BROKER_URL = 'django://'
-BROKER_BACKEND = "kombu.transport.DatabaseTransport"
+BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 CELERY_TIMEZONE = TIME_ZONE
 
