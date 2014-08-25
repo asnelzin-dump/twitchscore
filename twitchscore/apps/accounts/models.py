@@ -3,6 +3,10 @@ from django.db import models
 from twitchscore.apps.utils.riot import RiotAPI
 
 
+class Summoner(models.Model):
+    pass
+
+
 class User(AbstractBaseUser):
     REGION_CHOICES = (
         (1, 'BR'),
