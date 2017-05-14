@@ -15,7 +15,8 @@ def camelcase_to_underscore(name):
 
 def fix_keys(obj):
     if isinstance(obj, dict):
-        return {camelcase_to_underscore(key): fix_keys(value) for key, value in obj.items()}
+        return {camelcase_to_underscore(key): fix_keys(value)
+                for key, value in obj.items()}
     if isinstance(obj, list):
         return [fix_keys(value) for value in obj]
     else:
@@ -25,15 +26,15 @@ def fix_keys(obj):
 class RiotAPI(object):
     URL_TEMPLATE = 'https://{region}.api.pvp.net/api/lol/{region}/v{version}/{command}/?api_key={api_key}'
 
-    def __init__(self, user):
-        self.user = user
+    def __init__(self, summoner):
+        self.summoner = summoner
 
     def get_id_by_name(self):
         version = '1.4'
         command = 'summoner/by-name/{summoner_name}'
         parameters = {
-            'region': self.user.region.lower(),
-            'summoner_name': urllib.quote(self.user.summoner_name),
+            'region': self.summoner.get_region_name().lower(),
+            'summoner_name': urllib.quote(self.summoner.name),
         }
         data = self._execute_command(command, version, parameters)
         if data is not None:
@@ -45,8 +46,8 @@ class RiotAPI(object):
         version = '1.3'
         command = 'game/by-summoner/{summoner_id}/recent'
         parameters = {
-            'region': self.user.region.lower(),
-            'summoner_id': self.user.summoner_id,
+            'region': self.summoner.get_region_name().lower(),
+            'summoner_id': self.summoner.summoner_id,
         }
         data = self._execute_command(command, version, parameters)
         if data is not None:

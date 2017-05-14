@@ -14,7 +14,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db',
         'USER': 'postgres',
-        'PASSWORD': 'podushka',
+        'PASSWORD': '',
+    },
+    'dump': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dump_db',
+        'USER': 'postgres',
+        'PASSWORD': '',
     }
 }
 

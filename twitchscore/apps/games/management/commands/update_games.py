@@ -5,7 +5,7 @@ from pytz import UTC
 from django.core.management import BaseCommand
 
 from twitchscore.apps.accounts.models import User
-from twitchscore.apps.stats.models import Game, Stats, Player
+from twitchscore.apps.games.models import Game, Stats, Player
 from twitchscore.apps.utils.riot import RiotAPI
 
 logger = logging.getLogger(__name__)

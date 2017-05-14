@@ -59,11 +59,12 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    root('templates'),
+    root('twitchscore/templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.media',
     "django.core.context_processors.i18n",
     "django.core.context_processors.static",
@@ -85,13 +86,17 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 
     'south',
     'djkombu',
     'djcelery',
+    'bootstrapform',
 
     'twitchscore.apps.accounts',
-    'twitchscore.apps.stats'
+    'twitchscore.apps.games',
+    'twitchscore.apps.stats',
+    'twitchscore.apps.summoners',
 )
 
 #LOGGING
@@ -123,6 +128,19 @@ LOGGING = {
         }
     }
 }
+
+#AUTH
+AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = (
+    'twitchscore.apps.accounts.backends.EmailOrUsernameModelBackend',
+)
+
+#SSL
+
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 #URL
 ROOT_URLCONF = 'twitchscore.urls'
